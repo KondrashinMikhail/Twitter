@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default}" xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<div class="container" layout:fragment="content">
+    <a class="btn btn-success button-fixed" th:href="@{/record/edit/}">
+        <i class="fa-solid fa-plus"></i> Добавить
+    </a>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Текст</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Пользователь</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="record, iterator: ${records}">
+                <th scope="row" th:text="${iterator.index} + 1"></th>
+                <td th:text="${record.Text}"style="width: 60%"></td>
+                <td th:text="${record.Date}" style="width: 30%"></td>
+                <td th:text="${record.UserLogin}" style="width: 80%"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
