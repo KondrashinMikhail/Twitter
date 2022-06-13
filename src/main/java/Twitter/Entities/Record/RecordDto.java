@@ -10,7 +10,7 @@ public class RecordDto {
     @NotBlank(message = "Text can't be null or empty")
     private String Text;
     private Date date;
-    private Twitter.Entities.User.Model.User User;
+    private User User;
     public RecordDto() {
     }
     public RecordDto(Record record){

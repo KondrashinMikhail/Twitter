@@ -16,9 +16,9 @@ public class Record {
     private String Text;
     @Column
     private Date date;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    private Twitter.Entities.User.Model.User User;
+    private User User;
     public Record() {
     }
     public Record(String Text, Date RecordDate, User User) {

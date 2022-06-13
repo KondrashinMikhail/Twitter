@@ -21,8 +21,14 @@
             </tr>
             </tbody>
         </table>
+        <div th:if="${totalPages>0}" class="pagination">
+        <span style="float:left; padding:5px 5px;">Страницы:</span>
+        <a th:class="${page==users.number + 1} ? active"
+           th:each="page:${pages}"
+           th:href="@{/users(page=${page},size=${users.size})}"
+           th:text="${page}"></a>
+        </div>
     </div>
-    .
 </div>
 </body>
 </html>

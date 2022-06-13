@@ -15,18 +15,24 @@
                 <th scope="col">Текст</th>
                 <th scope="col">Дата</th>
                 <th scope="col">Пользователь</th>
-
             </tr>
             </thead>
             <tbody>
-            <tr th:each="record, iterator: ${records}">
+            <tr th:each="record, iterator: ${record}">
                 <th scope="row" th:text="${iterator.index} + 1"></th>
-                <td th:text="${record.Text}"style="width: 60%"></td>
+                <td th:text="${record.Text}" style="width: 60%"></td>
                 <td th:text="${record.Date}" style="width: 30%"></td>
-                <td th:text="${record.UserLogin}" style="width: 80%"></td>
+                <td th:text="${record.User.Login}" style="width: 80%"></td>
             </tr>
             </tbody>
         </table>
+        <div th:if="${totalPages>0}" class="pagination">
+            <span style="float:left; padding:5px 5px;">Страницы:</span>
+            <a th:class="${page==record.number + 1} ? active"
+               th:each="page:${pages}"
+               th:href="@{/record(page=${page},size=${record.size})}"
+               th:text="${page}"></a>
+        </div>
     </div>
 </div>
 </body>

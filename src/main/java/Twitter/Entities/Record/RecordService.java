@@ -22,7 +22,7 @@ public class RecordService {
         this.validatorUtil = validatorUtil;
     }
     public Page<Record> findAllRecords(int page, int size) {
-        return recordRepository.findAll(PageRequest.of(page - 1, size, Sort.by("date").ascending()));
+        return recordRepository.findAll(PageRequest.of(page - 1, size, Sort.by("date").descending()));
     }
 
     public Record AddRecord(String text, User user){

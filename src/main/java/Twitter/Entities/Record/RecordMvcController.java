@@ -11,6 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -30,10 +34,10 @@ public class RecordMvcController {
     public String getRecords(@RequestParam(defaultValue = "1") int page,
                            @RequestParam(defaultValue = "5") int size,
                            Model model) {
-        final Page<RecordDto> records = recordService.findAllRecords(page, size)
+        final Page<RecordDto> record = recordService.findAllRecords(page, size)
                 .map(RecordDto::new);
-        model.addAttribute("records", records);
-        final int totalPages = records.getTotalPages();
+        model.addAttribute("record", record);
+        final int totalPages = record.getTotalPages();
         final List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
                 .boxed()
                 .toList();
@@ -53,7 +57,7 @@ public class RecordMvcController {
         return "record-edit";
     }
     @PostMapping(value = {"", "/{id}/"})
-    public String saveCar(@PathVariable(required = false) Long id,
+    public String saveRecord(@PathVariable(required = false) Long id,
                           @ModelAttribute @Valid RecordDto recordDto,
                           BindingResult bindingResult,
                           Model model){

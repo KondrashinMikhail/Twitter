@@ -23,9 +23,6 @@ public class User {
     private String password;
     //private UserRole role;
 
-    @OneToMany
-    private List<Record> Records;
-
     public User() {
     }
 
